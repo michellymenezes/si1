@@ -1,1 +1,0 @@
-Este repositório possui o código referente ao lab01. Segunda alteração.
