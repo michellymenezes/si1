@@ -1,1 +1,1 @@
-Este repositório possui o código referente ao lab01. Alterando.
+Este repositório possui o código referente ao lab01. Alterando de erro.
