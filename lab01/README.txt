@@ -1,1 +1,1 @@
-Este repositório possui o código referente ao lab01. Alteração para merge.
+Este repositï¿½rio possui o cï¿½digo referente ao lab01. Alteraï¿½ï¿½o para merge.
