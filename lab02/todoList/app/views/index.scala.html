@@ -15,11 +15,15 @@
                 <td>@task.getProjeto() ||</td>
                 <td>@task.getDescricao() ||</td>
                 <td>@task.getPrioridade()</td>
+                <td>@task.getStatus()</td>
                 </tr></table>
  
                 
                 @form(routes.Application.deleteTask(task.getId())) {
                     <input type="submit" value="Deletar">
+                }
+                @form(routes.Application.updateTask(task.getId(), true)) {
+                    <input type="submit" value="Mudar">
                 }
           
         }

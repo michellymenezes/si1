@@ -33,6 +33,11 @@ public class Application extends Controller {
     	 Task.delete(id);
     	 return redirect(routes.Application.tasks());
     }
+    
+    public static Result updateTask(Long id, boolean state) {
+        Task.update(id, state);
+        return redirect(routes.Application.tasks());
+}
       
 
 }

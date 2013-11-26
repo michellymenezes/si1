@@ -27,6 +27,8 @@ public class Task extends Model implements Comparable {
 	@Required
 	private int prioridade;
 	
+	private boolean status;
+	
 	public static Finder<Long,Task> find = new Finder(Long.class, Task.class);
 	
     public static List<Task> all() {
@@ -34,6 +36,30 @@ public class Task extends Model implements Comparable {
         Collections.sort(tasks);
         return tasks;
     }
+    
+    public static void update(Long id, boolean status) {
+        Task aux = new Task();
+        
+        aux.setStatus(status);
+        aux.setNome(find.ref(id).getNome());
+        aux.setProjeto(find.ref(id).getProjeto());
+        aux.setDescricao(find.ref(id).getDescricao());
+        aux.setPrioridade(find.ref(id).getPrioridade());
+        
+        delete(id);
+        create(aux);       
+    }
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	public boolean getStatus() {
+		return status;
+	}
 
 	public Long getId() {
 		return id;
