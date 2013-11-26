@@ -7,25 +7,50 @@
     <h1>@tasks.size() Tarefa(s)</h1>
     
     <ul>
+    	<h2>Tarefas pendentes</h2>
         @for(task <- tasks) {
             <li>
-            <table border="0" style="background-color:#CCFF99;">
-            <tr>
-                <td>@task.getNome() ||</td>
-                <td>@task.getProjeto() ||</td>
-                <td>@task.getDescricao() ||</td>
-                <td>@task.getPrioridade()</td>
-                <td>@task.getStatus()</td>
-                </tr></table>
+            @if(!task.getStatus()){
+            	<table border="0" style="background-color:#CCFF99;">
+           		 <tr>
+                	<td>@task.getNome() ||</td>
+                	<td>@task.getProjeto() ||</td>
+            	    <td>@task.getDescricao() ||</td>
+        	        <td>@task.getPrioridade() ||</td>
+    	            <td>Pendente</td>
+	                </tr></table>
  
                 
-                @form(routes.Application.deleteTask(task.getId())) {
-                    <input type="submit" value="Deletar">
+                	@form(routes.Application.deleteTask(task.getId())) {
+                	    <input type="submit" value="Deletar">
+               		 }
+              	 	 @form(routes.Application.updateTask(task.getId(), true)) {
+                	    <input type="submit" value="Já realizei essa tarefa!">
+            	    }
                 }
-                @form(routes.Application.updateTask(task.getId(), true)) {
-                    <input type="submit" value="Mudar">
+        }
+    </ul>
+    
+        <ul>
+    	<h2>Tarefas realizadas</h2>
+        @for(task <- tasks) {
+            <li>
+            @if(task.getStatus()){
+            	<table border="0" style="background-color:#CCFF99;">
+           		 <tr>
+                	<td>@task.getNome() ||</td>
+                	<td>@task.getProjeto() ||</td>
+            	    <td>@task.getDescricao() ||</td>
+        	        <td>@task.getPrioridade() ||</td>
+    	            <td>Realizada</td>
+	                </tr></table>
+ 
+                
+                	@form(routes.Application.deleteTask(task.getId())) {
+                	    <input type="submit" value="Deletar">
+               		 }
+
                 }
-          
         }
     </ul>
     
