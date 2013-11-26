@@ -10,11 +10,11 @@ public class Application extends Controller {
 	static Form<Task> taskForm = Form.form(Task.class);
 
 	public static Result index() {
-        return ok(views.html.index.render(Task.all(), taskForm));
+        return redirect(routes.Application.tasks());
     }
     
     public static Result tasks() {
-        return TODO;
+         return ok(views.html.index.render(Task.all(), taskForm));
     }
     
     public static Result newTask() {

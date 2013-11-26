@@ -9,12 +9,19 @@
     <ul>
         @for(task <- tasks) {
             <li>
-                @task.label
+            <table border="0" style="background-color:#CCFF99;">
+            <tr>
+                <td>@task.getNome() ||</td>
+                <td>@task.getProjeto() ||</td>
+                <td>@task.getDescricao() ||</td>
+                <td>@task.getPrioridade()</td>
+                </tr></table>
+ 
                 
-                @form(routes.Application.deleteTask(task.id)) {
+                @form(routes.Application.deleteTask(task.getId())) {
                     <input type="submit" value="Deletar">
                 }
-            </li>
+          
         }
     </ul>
     
@@ -22,7 +29,10 @@
     
     @form(routes.Application.newTask()) {
         
-        @inputText(taskForm("label"), '_label -> "Etiqueta:")
+        @inputText(taskForm("nome"), '_label -> "Nome:")
+        @inputText(taskForm("projeto"), '_label -> "Projeto:")
+        @inputText(taskForm("descricao"), '_label -> "Descrição:")
+        <br>Prioridade:</br> <input taskForm("prioridade') type="number" name="Prioridade" min=1>
         
         <input type="submit" value="Criar">
         
