@@ -9,15 +9,15 @@
     <ul>
     	<h2>Tarefas pendentes</h2>
         @for(task <- tasks) {
-            <li>
             @if(!task.getStatus()){
+            <li>
             	<table border="0" style="background-color:#CCFF99;">
            		 <tr>
-                	<td>@task.getNome() ||</td>
-                	<td>@task.getProjeto() ||</td>
-            	    <td>@task.getDescricao() ||</td>
-        	        <td>@task.getPrioridade() ||</td>
-    	            <td>Pendente</td>
+                	<td>Nome: @task.getNome()<tr></td>
+                	<td>Projeto: @task.getProjeto()<tr></td>
+            	    <td>Descrição: @task.getDescricao()<tr></td>
+        	        <td>Prioridade: @task.getPrioridade()<tr></td>
+    	            <td>Status: Não realizada</td>
 	                </tr></table>
  
                 
@@ -34,15 +34,15 @@
         <ul>
     	<h2>Tarefas realizadas</h2>
         @for(task <- tasks) {
-            <li>
             @if(task.getStatus()){
+            <li>
             	<table border="0" style="background-color:#CCFF99;">
            		 <tr>
-                	<td>@task.getNome() ||</td>
-                	<td>@task.getProjeto() ||</td>
-            	    <td>@task.getDescricao() ||</td>
-        	        <td>@task.getPrioridade() ||</td>
-    	            <td>Realizada</td>
+                	<td>Nome: @task.getNome()</td><tr>
+                	<td>Projeto: @task.getProjeto()</td><tr>
+            	    <td>Descrição: @task.getDescricao()<tr></td>
+        	        <td>Prioridade: @task.getPrioridade()<tr></td>
+    	            <td>Status: Realizada</td>
 	                </tr></table>
  
                 
