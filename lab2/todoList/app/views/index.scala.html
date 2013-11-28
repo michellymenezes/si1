@@ -1,0 +1,70 @@
+@(tasks: List[models.Task], taskForm: Form[models.Task])
+
+@import helper._
+
+@main("Todo list") {
+    
+    <h1>@tasks.size() Tarefa(s)</h1>
+    
+    <ul>
+    	<h2>Tarefas pendentes</h2>
+        @for(task <- tasks) {
+            @if(!task.getStatus()){
+            <li>
+            	<table border="0" style="background-color:#CCFF99;">
+           		 <tr>
+                	<td>Nome: @task.getNome()<tr></td>
+                	<td>Projeto: @task.getProjeto()<tr></td>
+            	    <td>Descrição: @task.getDescricao()<tr></td>
+        	        <td>Prioridade: @task.getPrioridade()<tr></td>
+    	            <td>Status: Não realizada</td>
+	                </tr></table>
+ 
+                
+                	@form(routes.Application.deleteTask(task.getId())) {
+                	    <input type="submit" value="Deletar">
+               		 }
+              	 	 @form(routes.Application.updateTask(task.getId(), true)) {
+                	    <input type="submit" value="Já realizei essa tarefa!">
+            	    }
+                }
+        }
+    </ul>
+    
+        <ul>
+    	<h2>Tarefas realizadas</h2>
+        @for(task <- tasks) {
+            @if(task.getStatus()){
+            <li>
+            	<table border="0" style="background-color:#CCFF99;">
+           		 <tr>
+                	<td>Nome: @task.getNome()</td><tr>
+                	<td>Projeto: @task.getProjeto()</td><tr>
+            	    <td>Descrição: @task.getDescricao()<tr></td>
+        	        <td>Prioridade: @task.getPrioridade()<tr></td>
+    	            <td>Status: Realizada</td>
+	                </tr></table>
+ 
+                
+                	@form(routes.Application.deleteTask(task.getId())) {
+                	    <input type="submit" value="Deletar">
+               		 }
+
+                }
+        }
+    </ul>
+    
+    <h2>Adicionar uma nova tarefa</h2>
+    
+    @form(routes.Application.newTask()) {
+        
+        @inputText(taskForm("nome"), '_label -> "Nome:")
+        @inputText(taskForm("projeto"), '_label -> "Projeto:")
+        @inputText(taskForm("descricao"), '_label -> "Descrição:")
+        <br>Prioridade:</br> <input taskForm("prioridade') type="number" name="Prioridade" min=1>
+        
+        <input type="submit" value="Criar">
+        
+    }
+    
+}
